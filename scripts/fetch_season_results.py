@@ -1,10 +1,9 @@
-from src.fetch.jolpica import get_drivers
+from src.fetch.jolpica import get_season_results
 
 
 def main():
-    drivers = get_drivers(season=2025)
-    print(drivers)
-    #print(f"Fetched {len(drivers)} drivers")
+    get_season_results(season=2025)
+    print("2025 data complete")
 
 if __name__ == "__main__":
     main()

@@ -6,3 +6,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 *.csv
+data/raw/*
+#Allow raw data from jolpica to be uploaded
+!data/raw/jolpica/
+!data/raw/jolpica/*.json
