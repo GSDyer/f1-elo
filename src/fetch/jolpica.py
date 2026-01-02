@@ -9,7 +9,13 @@ RAW_DATA_DIR = os.path.join("data", "raw", "jolpica")
 def get_season_results(season: int):
     """
     Queries Jolpica API for all race results from a specific season, and saves it as a JSON in data/raw/jolpica
+    Will skip if the season JSON already exists
     """
+    output_file = output_file = os.path.join(RAW_DATA_DIR, f"{season}_season_results.json")
+    if os.path.exists(output_file):
+        print(f"Raw data for season {season} already exists: Skipping API call")
+        return
+    
     all_races = []
     race_lookup = {}
     limit = 100
@@ -41,6 +47,5 @@ def get_season_results(season: int):
             break
         time.sleep(0.5)
 
-    output_file = os.path.join(RAW_DATA_DIR, f"{season}_season_results.json")
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump({"Races": all_races}, f, ensure_ascii=False, indent=2)
